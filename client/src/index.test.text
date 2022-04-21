@@ -1,0 +1,10 @@
+import React from 'react'; // this needs to be imported
+// import App from './App'; // we should put __test__ under Form folder?
+import { render, screen, cleanup } from '@testing-library/react';
+
+test('should render App component', () => {
+    render(<App />);
+    // const todoElement = screen.getByTestId('todo-1');
+    // expect(todoElement).toBeInTheDocument();
+    // expect(todoElement).toHaveTextContent('Hello World!');
+})
