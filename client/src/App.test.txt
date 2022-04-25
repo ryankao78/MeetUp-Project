@@ -1,5 +1,5 @@
 import React from 'react'; // this needs to be imported
-import Form from '../Form'; // we should put __test__ under src folder?
+import App from './App'; // we should put __test__ under src folder?
 import { render, screen, cleanup } from '@testing-library/react';
 // import { store } from './redux/store';
 
@@ -14,9 +14,9 @@ function renderWithRedux(renderComponent) {
     return render(<Provider store={ store }>{renderComponent}</Provider>);
 }
 
-test('should render Form component', () => {
-    renderWithRedux(<Form />);
+test('should render App component', () => {
+    renderWithRedux(<App />);
     
-    expect(screen.getAllByText("Launch a MeetUp")[2]);
+    expect(screen.getByText("Let's MeetUp!"));
 
 });

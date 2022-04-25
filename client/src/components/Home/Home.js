@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
-import { getPosts } from '../../actions/posts';
+import { retrieveEvents } from '../../actions/events';
 
-import Posts from '../Posts/Posts';
+import Events from '../Events/Events';
 import Form from '../Form/Form';
 
 const Home = () => {
@@ -13,15 +13,15 @@ const Home = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getPosts());
-    }, [currentId, dispatch]);
+        dispatch(retrieveEvents());
+    }, [currentId, dispatch]); // if [currentId, dispatch] changes, then useEffect will be invoked
 
     return (
         <Grow in>
             <Container>
                 <Grid container justify="space-between" alignItems="stretch" spacing={3}>
                     <Grid item xs={12} sm={7}>
-                        <Posts setCurrentId={setCurrentId}/> {/* component */}
+                        <Events setCurrentId={setCurrentId}/> {/* component */}
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Form currentId={currentId} setCurrentId={setCurrentId}/> {/* component */}

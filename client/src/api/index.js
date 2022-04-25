@@ -2,12 +2,14 @@ import axios from 'axios';
 
 const url = 'http://localhost:5000/posts';
 
-export const fetchPosts = () => axios.get(url);
+export const retrieveEvents = () => axios.get(url);
 
-export const createPost = (newPost) => axios.post(url, newPost);
+export const createEvent = (newEvent) => axios.post(url, newEvent);
 
-export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost); // updatedPost = postData
+export const updateEvent = (id, updated_Event) => axios.patch(`${url}/${id}`, updated_Event); // updated_Event = event data
 
-export const deletePost = (id) => axios.delete(`${url}/${id}`);
+export const deleteEvent = (id) => axios.delete(`${url}/${id}`);
 
-export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
+export const joinEvent = (id) => axios.patch(`${url}/${id}/joinEvent`); // what does this path mean?
+
+export const rejectEvent = (id) => axios.patch(`${url}/${id}/rejectEvent`); 

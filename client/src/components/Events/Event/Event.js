@@ -1,12 +1,16 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, TextField } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
-import { deletePost, likePost } from '../../../actions/posts';
+import { deleteEvent, joinEvent, rejectEvent } from '../../../actions/events';
+
+import Comments from '../../Comments/Comments';
+import SendIcon from '@material-ui/icons/Send';
 
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
@@ -33,16 +37,36 @@ const Post = ({ post, setCurrentId }) => {
                 <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
+                <Button size="small" color="primary" onClick={() => dispatch(joinEvent(post._id))}>
                     <ThumbUpAltIcon fontSize="small" />
-                    &nbsp; Join &nbsp;
-                    {post.likeCount}
+                    Join &nbsp;
+                    {post.joinCount}
                 </Button>
-                <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
+                <Button size="small" color="secondary" onClick={() => dispatch(rejectEvent(post._id))}>
+                    <ThumbDownAltIcon fontSize="small" />
+                     Reject &nbsp;
+                    {post.rejectCount}
+                </Button>
+                <Button size="small" color="success" onClick={() => dispatch(deleteEvent(post._id))}>
                     <DeleteIcon fontSize="small" />
                     Delete
                 </Button>
             </CardActions>
+        <div>
+            <Comments />
+        </div>
+        <form className="post__form">
+            <TextField
+                label="add comment"
+                size="small"
+                variant="outlined"
+                className="post__input"
+                placeholder="add comment"
+                />
+            <Button variant="contained" size="small" endIcon={<SendIcon />} >
+                Send
+            </Button>
+        </form>
         </Card>
     )
 }
